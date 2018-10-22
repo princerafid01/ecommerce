@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 // Frontend
 Route::get('/', 'IndexController@index')->name('index');
 Route::get('/products/{id}', 'IndexController@SingleProduct')->name('products');
@@ -38,7 +27,7 @@ Route::post('/cancel', 'CheckoutController@Cancel')->name('payment.cancel');
 Route::get('/payment', 'CheckoutController@Payment')->name('payment');
 
 
-Route::post('/payments/success', 'CheckoutController@Success');
+Route::get('/payments/success', 'CheckoutController@Success');
 Route::get('/payments/fails', function () {
 	return 'fails';
 });
@@ -98,3 +87,13 @@ Route::prefix('admin')->group(function (){
 
 	Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
+
+Route::any('/w', function () {
+	return view('welcome');
+});
+
+Route::get('skills', function () {
+	return ['laravel','vue','php','Javascript','Tooling'];
+});
+
+Route::any('form', 'HomeController@form');
